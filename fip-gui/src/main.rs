@@ -4,7 +4,7 @@ fn main() {
     println!("Launching FIP GUI...");
 
     let output = Command::new("cargo")
-        .args(&["run", "-p", "fip-cli", "--", "--name", "GUI"])
+        .args(["run", "-p", "fip-cli", "--", "--name", "GUI"])
         .output()
         .expect("Failed to run CLI");
 

@@ -43,7 +43,7 @@ impl Provider for AptProvider {
 
     fn search(&self, package: &str) -> Result<()> {
         println!("[apt] searching {package}");
-        let status = Command::new("apt").args(&["search", package]).status()?;
+        let status = Command::new("apt").args(["search", package]).status()?;
 
         if status.success() {
             Ok(())
