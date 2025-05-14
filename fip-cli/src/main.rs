@@ -1,15 +1,7 @@
 use clap::Parser;
-use fip_core::greet;
+use fip_core::{cli::Cli, run};
 
-#[derive(Parser)]
-#[command(name = "fip", version, about = "Fast Install Package")]
-struct Cli {
-    #[arg(short, long)]
-    name: Option<String>,
-}
-
-fn main() {
+fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
-    let name = cli.name.as_deref().unwrap_or("world");
-    println!("{}", greet(name));
+    run(cli)
 }

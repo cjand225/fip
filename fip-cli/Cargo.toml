@@ -6,3 +6,4 @@ edition = "2024"
 [dependencies]
 clap = { version = "4.4", features = ["derive"] }
 fip-core = { path = "../fip-core" }
+anyhow = "1.0.98"
