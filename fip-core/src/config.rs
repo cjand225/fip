@@ -3,11 +3,15 @@ use serde::Deserialize;
 #[derive(Debug, Deserialize)]
 pub struct Config {
     pub default_provider: String,
+    pub package_path: Option<String>,
+    pub appimage_base_dir: Option<String>,
 }
 
 pub fn load_config() -> anyhow::Result<Config> {
     // TODO: Load config based on platform
     Ok(Config {
         default_provider: "apt".into(),
+        package_path: None,
+        appimage_base_dir: Some("/opt/applications".into()),
     })
 }
