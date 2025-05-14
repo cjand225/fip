@@ -1,6 +1,6 @@
+use super::Provider;
 use anyhow::Result;
 use std::process::Command;
-use super::Provider;
 
 pub struct AptProvider;
 
@@ -18,7 +18,10 @@ impl AptProvider {
         if status.success() {
             Ok(())
         } else {
-            Err(anyhow::anyhow!("APT command failed: apt {}", args.join(" ")))
+            Err(anyhow::anyhow!(
+                "APT command failed: apt {}",
+                args.join(" ")
+            ))
         }
     }
 }
@@ -40,9 +43,7 @@ impl Provider for AptProvider {
 
     fn search(&self, package: &str) -> Result<()> {
         println!("[apt] searching {package}");
-        let status = Command::new("apt")
-            .args(&["search", package])
-            .status()?;
+        let status = Command::new("apt").args(&["search", package]).status()?;
 
         if status.success() {
             Ok(())

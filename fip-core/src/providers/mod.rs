@@ -1,8 +1,8 @@
 mod apt;
 
-use anyhow::{Result, bail};
 use self::apt::AptProvider;
 use crate::config::Config;
+use anyhow::{Result, bail};
 
 pub trait Provider {
     fn name(&self) -> &'static str;
