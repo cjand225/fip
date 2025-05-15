@@ -10,12 +10,14 @@ pub struct AppImageProvider {
 
 impl AppImageProvider {
     pub fn new(config: &Config) -> Self {
-        Self {
-            base_dir: config.appimage_base_dir
-                .as_deref()
-                .map(PathBuf::from)
-                .unwrap_or_else(|| PathBuf::from("/opt/applications")),
-        }
+        let base_dir = config.package_path
+            .as_ref()
+            .map_or_else(
+                || PathBuf::from("/opt/applications"),
+                |path| PathBuf::from(path)
+            );
+        
+        Self { base_dir }
     }
 
     pub fn is_appimage(path: &Path) -> Result<bool> {
