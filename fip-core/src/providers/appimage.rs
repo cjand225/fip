@@ -21,7 +21,10 @@ impl AppImageProvider {
     }
 
     pub fn is_appimage(path: &Path) -> Result<bool> {
-        bail!("Not implemented")
+        Ok(path.extension()
+            .and_then(|ext| ext.to_str())
+            .map(|ext| ext.eq_ignore_ascii_case("AppImage"))
+            .unwrap_or(false))
     }
 
     fn extract_app_name(&self, appimage_path: &Path) -> Result<String> {
